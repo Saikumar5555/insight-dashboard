@@ -26,6 +26,7 @@ import {
 
 const navItems = [
   { title: "Overview", url: "/", icon: LayoutDashboard },
+  { title: "Campaign", url: "/campaign", icon: Megaphone },
   { title: "Lead Funnel", url: "/lead-funnel", icon: GitBranch },
   { title: "Lead Management", url: "/lead-management", icon: Users },
   { title: "AI Analytics", url: "/ai-analytics", icon: Monitor },
@@ -34,7 +35,7 @@ const navItems = [
   { title: "Lead Sources", url: "/lead-sources", icon: Globe },
   { title: "Counselors", url: "/counselors", icon: UserCheck },
   { title: "AI SDR Performance", url: "/ai-sdr-performance", icon: Bot },
-  { title: "Campaign", url: "/campaign", icon: Megaphone },
+  
 ];
 
 export function AppSidebar() {

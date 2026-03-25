@@ -1,6 +1,6 @@
 import { Users, UserPlus, MessageSquare, UserCheck, Phone, GraduationCap, TrendingUp, DollarSign, Bot, Clock } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Legend } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Legend, BarChart, Bar, Cell, PieChart, Pie, Tooltip } from "recharts";
 
 const trendData = [
   { date: "Feb 24", leads: 320, conversations: 280, enrollments: 80 },
@@ -24,6 +24,29 @@ const channels = [
   { name: "WhatsApp", conversations: 5234, response: 78, color: "hsl(36, 95%, 55%)" },
   { name: "Web Chat", conversations: 3421, response: 65, color: "hsl(160, 70%, 48%)" },
   { name: "Email", conversations: 1177, response: 42, color: "hsl(36, 95%, 55%)" },
+];
+
+const courseInterestData = [
+  { name: "AI & Machine Learning", leads: 4500, enrollments: 800, percentage: "16%" },
+  { name: "Data Science", leads: 3800, enrollments: 700, percentage: "15%" },
+  { name: "Cybersecurity", leads: 2200, enrollments: 400, percentage: "14%" },
+  { name: "Product Management", leads: 1800, enrollments: 300, percentage: "13%" },
+  { name: "Cloud Computing", leads: 1200, enrollments: 200, percentage: "11.4%" },
+];
+
+const leadSourceData = [
+  { name: "Facebook Ads", value: 4523, percentage: "35.2%", color: "#8b5cf6" },
+  { name: "Google Ads", value: 3892, percentage: "30.3%", color: "#10b981" },
+  { name: "Website Chat", value: 2134, percentage: "16.6%", color: "#f59e0b" },
+  { name: "LinkedIn", value: 1234, percentage: "9.6%", color: "#ef4444" },
+  { name: "Webinar", value: 712, percentage: "5.5%", color: "#22c55e" },
+  { name: "Referral", value: 352, percentage: "2.7%", color: "#6366f1" },
+];
+
+const costPerEnrollment = [
+  { source: "Facebook Ads", cost: "$185" },
+  { source: "Google Ads", cost: "$220" },
+  { source: "Website Chat", cost: "$95" },
 ];
 
 export default function Overview() {
@@ -81,6 +104,96 @@ export default function Overview() {
                 <div className="h-2 rounded-full bg-secondary overflow-hidden">
                   <div className="h-full rounded-full" style={{ width: `${ch.response}%`, backgroundColor: ch.color }} />
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="rounded-lg border border-border bg-card p-6 flex flex-col">
+          <h3 className="text-lg font-semibold text-foreground mb-6">Course Interest Analytics</h3>
+          <div className="flex-1 min-h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={courseInterestData}
+                layout="vertical"
+                margin={{ left: 50, right: 30, top: 0, bottom: 0 }}
+                barGap={8}
+              >
+                <CartesianGrid horizontal={false} stroke="hsl(240, 6%, 18%)" strokeDasharray="3 3" />
+                <XAxis type="number" hide />
+                <YAxis
+                  dataKey="name"
+                  type="category"
+                  stroke="hsl(240, 5%, 55%)"
+                  fontSize={10}
+                  width={100}
+                />
+                <Tooltip
+                  cursor={{ fill: 'transparent' }}
+                  contentStyle={{ backgroundColor: '#18181b', border: '1px solid #27272a', borderRadius: '4px' }}
+                />
+                <Bar dataKey="leads" fill="#8b5cf6" radius={[0, 4, 4, 0]} barSize={12} name="Leads" />
+                <Bar dataKey="enrollments" fill="#10b981" radius={[0, 4, 4, 0]} barSize={12} name="Enrollments" />
+                <Legend iconType="square" align="center" verticalAlign="bottom" wrapperStyle={{ paddingTop: '20px' }} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="grid grid-cols-5 gap-2 mt-6 pt-6 border-t border-border">
+            {courseInterestData.map((course) => (
+              <div key={course.name} className="flex flex-col items-center">
+                <span className="text-sm font-bold text-[#8b5cf6]">{course.percentage}</span>
+                <span className="text-[10px] text-muted-foreground text-center line-clamp-2">{course.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-border bg-card p-6 flex flex-col">
+          <h3 className="text-lg font-semibold text-foreground mb-6">Lead Source Analytics</h3>
+          <div className="flex flex-1 items-center gap-8">
+            <div className="w-1/2 aspect-square">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={leadSourceData}
+                    innerRadius="60%"
+                    outerRadius="80%"
+                    paddingAngle={5}
+                    dataKey="value"
+                  >
+                    {leadSourceData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    contentStyle={{ backgroundColor: '#18181b', border: '1px solid #27272a', borderRadius: '4px' }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="w-1/2 space-y-3">
+              {leadSourceData.map((source) => (
+                <div key={source.name} className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: source.color }} />
+                    <span className="text-foreground">{source.name}</span>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="text-muted-foreground">{source.value.toLocaleString()}</span>
+                    <span className="font-medium text-foreground w-12 text-right">{source.percentage}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-4 mt-6 p-4 rounded-lg bg-secondary/30">
+            {costPerEnrollment.map((item) => (
+              <div key={item.source} className="flex flex-col items-center text-center">
+                <span className="text-lg font-bold text-foreground">{item.cost}</span>
+                <span className="text-[10px] text-muted-foreground">Cost per Enrollment</span>
+                <span className="text-[10px] text-muted-foreground font-medium">{item.source}</span>
               </div>
             ))}
           </div>
