@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { DashboardLayout } from "@/components/DashboardLayout";
 import Overview from "@/pages/Overview";
 import LeadFunnel from "@/pages/LeadFunnel";
-import LeadManagement from "@/pages/LeadManagement";
+// import LeadManagement from "@/pages/LeadManagement";
 import AiAnalytics from "@/pages/AiAnalytics";
 import Outreach from "@/pages/Outreach";
 import CourseAnalytics from "@/pages/CourseAnalytics";
@@ -14,6 +14,7 @@ import LeadSources from "@/pages/LeadSources";
 import Counselors from "@/pages/Counselors";
 import AiSdrPerformance from "@/pages/AiSdrPerformance";
 import Campaign from "@/pages/Campaign";
+import People from "@/pages/People";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,7 +29,7 @@ const App = () => (
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Overview />} />
             <Route path="/lead-funnel" element={<LeadFunnel />} />
-            <Route path="/lead-management" element={<LeadManagement />} />
+            {/* <Route path="/lead-management" element={<LeadManagement />} /> */}
             <Route path="/ai-analytics" element={<AiAnalytics />} />
             <Route path="/outreach" element={<Outreach />} />
             <Route path="/course-analytics" element={<CourseAnalytics />} />
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/counselors" element={<Counselors />} />
             <Route path="/ai-sdr-performance" element={<AiSdrPerformance />} />
             <Route path="/campaign" element={<Campaign />} />
+            <Route path="/people" element={<People />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

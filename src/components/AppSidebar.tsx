@@ -9,6 +9,7 @@ import {
   UserCheck,
   Bot,
   Megaphone,
+  ContactRound,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
@@ -27,8 +28,9 @@ import {
 const navItems = [
   { title: "Overview", url: "/", icon: LayoutDashboard },
   { title: "Campaign", url: "/campaign", icon: Megaphone },
+  { title: "People", url: "/people", icon: ContactRound },
   { title: "Lead Funnel", url: "/lead-funnel", icon: GitBranch },
-  { title: "Lead Management", url: "/lead-management", icon: Users },
+  // { title: "Lead Management", url: "/lead-management", icon: Users },
   { title: "AI Analytics", url: "/ai-analytics", icon: Monitor },
   { title: "Outreach", url: "/outreach", icon: Send },
   { title: "Course Analytics", url: "/course-analytics", icon: GraduationCap },
