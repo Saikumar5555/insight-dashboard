@@ -1,4 +1,4 @@
-import { Users, UserPlus, MessageSquare, UserCheck, Phone, GraduationCap, TrendingUp, DollarSign, Bot, Clock } from "lucide-react";
+import { Users, UserPlus, MessageSquare, UserCheck, Phone, GraduationCap, TrendingUp, Bot } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Legend, BarChart, Bar, Cell, PieChart, Pie, Tooltip } from "recharts";
 
@@ -43,11 +43,7 @@ const leadSourceData = [
   { name: "Referral", value: 352, percentage: "2.7%", color: "#6366f1" },
 ];
 
-const costPerEnrollment = [
-  { source: "Facebook Ads", cost: "$185" },
-  { source: "Google Ads", cost: "$220" },
-  { source: "Website Chat", cost: "$95" },
-];
+
 
 export default function Overview() {
   return (
@@ -68,9 +64,9 @@ export default function Overview() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         <StatCard icon={GraduationCap} value="1,892" label="Enrolled" change="+7.8%" />
         <StatCard icon={TrendingUp} value="14.7%" label="Conversion Rate" change="+2.1%" />
-        <StatCard icon={DollarSign} value="$245" label="Cost/Enrollment" change="-5.3%" changeType="negative" />
-        <StatCard icon={Bot} value="98.5%" label="AI Response Rate" change="+0.5%" />
-        <StatCard icon={Clock} value="12s" label="Avg Response" change="-12%" changeType="negative" />
+        <StatCard icon={MessageSquare} value="28.4%" label="Response Rate of Leads" change="+4.2%" />
+        <StatCard icon={Bot} value="1.2s" label="Avg Response of AI" change="-15%" changeType="negative" />
+        <StatCard icon={Phone} value="52.3%" label="Meeting Booked Rate" change="+3.2%" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
@@ -189,13 +185,21 @@ export default function Overview() {
             </div>
           </div>
           <div className="grid grid-cols-3 gap-4 mt-6 p-4 rounded-lg bg-secondary/30">
-            {costPerEnrollment.map((item) => (
-              <div key={item.source} className="flex flex-col items-center text-center">
-                <span className="text-lg font-bold text-foreground">{item.cost}</span>
-                <span className="text-[10px] text-muted-foreground">Cost per Enrollment</span>
-                <span className="text-[10px] text-muted-foreground font-medium">{item.source}</span>
-              </div>
-            ))}
+            <div className="flex flex-col items-center text-center">
+              <span className="text-lg font-bold text-foreground">1.2s</span>
+              <span className="text-[10px] text-muted-foreground">Avg Response</span>
+              <span className="text-[10px] text-muted-foreground font-medium">AI SDR</span>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <span className="text-lg font-bold text-foreground">28.4%</span>
+              <span className="text-[10px] text-muted-foreground">Response Rate</span>
+              <span className="text-[10px] text-muted-foreground font-medium">Leads</span>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <span className="text-lg font-bold text-foreground">98.5%</span>
+              <span className="text-[10px] text-muted-foreground">Success Rate</span>
+              <span className="text-[10px] text-muted-foreground font-medium">AI Bot</span>
+            </div>
           </div>
         </div>
       </div>
